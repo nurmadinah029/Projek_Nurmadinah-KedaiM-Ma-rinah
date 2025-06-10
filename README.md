@@ -1,61 +1,104 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profil Proyek Kedai Ma'Rinah</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    h2, h3 {
+      text-align: center;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #888;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    ul li {
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Kedai Ma'Rinah</h2>
+  <div align="center">
+    <img src="unsulbar.jpeg" width="300" alt="Logo Unsulbar" />
+  </div>
+  <h2>Nurmadinah</h2>
+  <h2>D0223001</h2>
+  <h2>Framework Web Based</h2>
+  <h2>2025</h2>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+  <h3>Role dan Fitur-fiturnya</h3>
+  <ul>
+    <li><strong>Admin:</strong> Mengelola menu, pengguna, dan pesanan.</li>
+    <li><strong>Kasir:</strong> Melihat dan menyelesaikan pembayaran pesanan yang telah dikonfirmasi.</li>
+    <li><strong>Pembeli:</strong> Melakukan pemesanan makanan, melihat riwayat, dan mengonfirmasi pesanan.</li>
+  </ul>
 
-## About Laravel
+  <h3>Tabel <code>users</code></h3>
+  <table>
+    <tr><th>Nama Field</th><th>Tipe Data</th><th>Keterangan</th></tr>
+    <tr><td>id</td><td>bigint (auto)</td><td>Primary key</td></tr>
+    <tr><td>name</td><td>varchar</td><td>Nama pengguna</td></tr>
+    <tr><td>email</td><td>varchar (unique)</td><td>Alamat email</td></tr>
+    <tr><td>password</td><td>varchar</td><td>Kata sandi</td></tr>
+    <tr><td>role</td><td>enum</td><td>admin / kasir / pembeli</td></tr>
+    <tr><td>created_at</td><td>timestamp</td><td>Tanggal dibuat</td></tr>
+    <tr><td>updated_at</td><td>timestamp</td><td>Tanggal update</td></tr>
+  </table>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+  <h3>Tabel <code>menus</code></h3>
+  <table>
+    <tr><th>Nama Field</th><th>Tipe Data</th><th>Keterangan</th></tr>
+    <tr><td>id</td><td>bigint (auto)</td><td>Primary key</td></tr>
+    <tr><td>name</td><td>varchar</td><td>Nama makanan/minuman</td></tr>
+    <tr><td>price</td><td>decimal(10,2)</td><td>Harga satuan</td></tr>
+    <tr><td>stock</td><td>integer</td><td>Jumlah stok tersedia</td></tr>
+    <tr><td>created_at</td><td>timestamp</td><td>Tanggal dibuat</td></tr>
+    <tr><td>updated_at</td><td>timestamp</td><td>Tanggal update</td></tr>
+  </table>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+  <h3>Tabel <code>orders</code></h3>
+  <table>
+    <tr><th>Nama Field</th><th>Tipe Data</th><th>Keterangan</th></tr>
+    <tr><td>id</td><td>bigint (auto)</td><td>Primary key</td></tr>
+    <tr><td>user_id</td><td>bigint</td><td>Foreign key ke users.id</td></tr>
+    <tr><td>order_time</td><td>datetime</td><td>Waktu pemesanan</td></tr>
+    <tr><td>total_price</td><td>decimal(10,2)</td><td>Total harga pesanan</td></tr>
+    <tr><td>status</td><td>enum</td><td>pending / processing / delivered / selesai</td></tr>
+    <tr><td>created_at</td><td>timestamp</td><td>Tanggal dibuat</td></tr>
+    <tr><td>updated_at</td><td>timestamp</td><td>Tanggal update</td></tr>
+  </table>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+  <h3>Tabel <code>order_items</code></h3>
+  <table>
+    <tr><th>Nama Field</th><th>Tipe Data</th><th>Keterangan</th></tr>
+    <tr><td>id</td><td>bigint (auto)</td><td>Primary key</td></tr>
+    <tr><td>order_id</td><td>bigint</td><td>Foreign key ke orders.id</td></tr>
+    <tr><td>menu_id</td><td>bigint</td><td>Foreign key ke menus.id</td></tr>
+    <tr><td>quantity</td><td>integer</td><td>Jumlah pesanan</td></tr>
+    <tr><td>created_at</td><td>timestamp</td><td>Tanggal dibuat</td></tr>
+    <tr><td>updated_at</td><td>timestamp</td><td>Tanggal update</td></tr>
+  </table>
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+  <h3>Relasi Antar Tabel</h3>
+  <table>
+    <tr><th>Tabel Asal</th><th>Tabel Tujuan</th><th>Relasi</th><th>Penjelasan</th></tr>
+    <tr><td>users</td><td>orders</td><td>1 : m</td><td>Satu pembeli bisa memiliki banyak pesanan</td></tr>
+    <tr><td>orders</td><td>order_items</td><td>1 : m</td><td>Satu pesanan bisa berisi banyak item</td></tr>
+    <tr><td>menus</td><td>order_items</td><td>1 : m</td><td>Satu menu bisa dipesan di banyak pesanan</td></tr>
+  </table>
+</body>
+</html>
